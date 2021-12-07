@@ -16,7 +16,18 @@ class DFS:
                 except:
                     map[row] = [col]
         print(map, 'map')
+        return map
 
+    def dfs(self, vertex, visited=None):
+        if visited is None:
+            visited = set()
+        visited.add(vertex)
+        print(vertex)
+        for node in self.graph_dict[vertex]:
+            if node not in visited:
+                self.dfs(node, visited)
+
+        
 
 graph_dict = {
     0: [1,3],
@@ -32,5 +43,7 @@ graph_adj = [
     [1,0,1,0],
 ]
 
-DFS(graph_adj)
+g = DFS(graph_adj)
+g.dfs(0)
+
 
