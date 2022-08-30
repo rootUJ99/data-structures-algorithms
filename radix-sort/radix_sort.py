@@ -10,6 +10,10 @@ def counting_sort(arr, n, div):
         count[i]+=count[i-1]
     # print(count, 'after')
 
+    for i in range(1, 10):
+        count[i]+=count[i-1]
+    # print(count, 'after')
+
     temp = [0] * 10
 
     for i in range(n-1, -1, -1):
