@@ -1,6 +1,8 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+)
 
 // LPS stands for Longest Proper Prefix
 func createLPSTable(pattern string) []int {
@@ -26,6 +28,34 @@ func createLPSTable(pattern string) []int {
 	return LPS
 }
 
+func computeWithLPS(input string, pattern string) int {
+	i := 0
+	j := 0
+	n := len(input)
+	m := len(pattern)
+	LPS := createLPSTable(pattern)
+	for i < n {
+		if input[i] == pattern[j] {
+			i += 1
+			j += 1
+			if j == m {
+				return i - j
+			}
+			j = LPS[j-1]
+		} else {
+			if j > 0 {
+				j = LPS[j-1]
+			} else {
+				i += 1
+			}
+		}
+	}
+	return -1
+}
+
 func main() {
-	createLPSTable("abbadabba")
+	input := "yoyoinyoyo"
+	pattern := "yoyo"
+	patternIndex := computeWithLPS(input, pattern)
+	fmt.Println(patternIndex)
 }
