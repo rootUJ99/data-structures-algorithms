@@ -41,7 +41,6 @@ func computeWithLPS(input string, pattern string) int {
 			if j == m {
 				return i - j
 			}
-			j = LPS[j-1]
 		} else {
 			if j > 0 {
 				j = LPS[j-1]
@@ -54,7 +53,7 @@ func computeWithLPS(input string, pattern string) int {
 }
 
 func main() {
-	input := "yoyoinyoyo"
+	input := "inyoyo"
 	pattern := "yoyo"
 	patternIndex := computeWithLPS(input, pattern)
 	fmt.Println(patternIndex)
