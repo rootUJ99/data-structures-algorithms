@@ -23,21 +23,22 @@ func compareBlocks(query []Query, i int, j int, bLen int) bool {
 func main() {
 	query := []Query{
 		{0, 4},
-		{1, 5},
 		{2, 7},
+		{1, 5},
 	}
-	fmt.Println("query", query)
 	arr := []int{1, 4, 6, 2, 5, 7, 21, 4, 68}
 	n := len(arr)
-
+	fmt.Println("query before", query)
 	bLen := int(math.Sqrt(float64(n))) + 1
 
 	sort.SliceStable(query, func(i int, j int) bool { return compareBlocks(query, i, j, bLen) })
+	fmt.Println("query after", query)
 
+	summations := [3]int{}
 	currL := 0
-	currR := 0
+	currR := -1
 	currSum := 0
-	for _, ele := range query {
+	for i, ele := range query {
 		left := ele.left
 		right := ele.right
 
@@ -45,7 +46,7 @@ func main() {
 			currL -= 1
 			currSum += arr[currL]
 		}
-		for currR > right {
+		for currR < right {
 			currR += 1
 			currSum += arr[currR]
 		}
@@ -60,6 +61,8 @@ func main() {
 		}
 
 		fmt.Println("left", left, "right", right, currSum, "sum")
+		summations[i] = currSum
 	}
 
+	fmt.Println(summations)
 }
