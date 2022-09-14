@@ -25,10 +25,11 @@ def find(string, pattern):
     n = len(concat_string)
     zarr = [0] * n
     create_zarray(concat_string, zarr)
-
-    for i in range(n):
-        if concat_string[i] == zarr[i]:
-            return i
+    string_len = len(string)
+    pattern_len = len(pattern)
+    for i in range(string_len):
+        if pattern_len == zarr[i]:
+            return i - pattern_len - 1
 
     return -1
     
