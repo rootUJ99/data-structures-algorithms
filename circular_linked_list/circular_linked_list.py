@@ -1,9 +1,12 @@
+from ctypes import pointer
+
+
 class Node:
 	def __init__(self, data=None, next=None):
 		self.data = data
 		self.next = next
 
-class CLinkedLinst:
+class CircularLinkedList:
 	def __init__(self, head=None):
 		self.head = head
 	
@@ -20,16 +23,22 @@ class CLinkedLinst:
 				break
 		return print(llist)
 
-	def checkLoop(self, slow, fast):
-		if (slow == None or fast == None):
-			return False
-		while(slow != fast):
-			if (slow == None or fast == None):
-				return False
-			slow= slow.next
-			fast= fast.next.next
-		return True
+	def checkLoop(self):
+		pointer1 = self.head
+		pointer2 = self.head
 
+		while(pointer1 and pointer2 and pointer2.next):
+			
+			pointer1 = pointer1.next
+			pointer2 = pointer2.next.next
+
+			if(pointer1 == pointer2):
+				print(pointer1 == self.head)
+				print(pointer2 == self.head)
+				print(pointer1 == self.head and pointer2 == self.head)
+
+				print("loop detected")
+				return True
 
 	def push(self, data):
 		if self.head == None:
@@ -47,11 +56,10 @@ class CLinkedLinst:
 
 
 
-cl = CLinkedLinst()
+cl = CircularLinkedList()
 
-cl.push(2)
+cl.push(2) # p1 = 2
 cl.push(3)
 cl.push(4)
 cl.push(5)
-
-cl.print()
+cl.checkLoop()
