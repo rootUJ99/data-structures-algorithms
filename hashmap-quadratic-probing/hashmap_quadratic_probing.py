@@ -9,9 +9,10 @@ class HashMap:
 
     def set_key(self, key):
         hash = self.hash_func(key)
+        i = 0
         if hash < len(self.input):
             while self.input[hash] != None:
-                hash = self.hash_func(hash + 1)
+                hash = self.hash_func(hash + i * i)
             self.input[hash] = key
 
     def get_key(self, key):
