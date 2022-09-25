@@ -11,8 +11,10 @@ class HashMap:
         hash = self.hash_func(key)
         i = 0
         indx = 0
-        while i < self.size and self.input[indx] != None:
+        while i < self.size:
             indx = self.hash_func(hash + i * i)
+            if self.input[indx] == None:
+                break
             i+=1
         self.input[indx] = key
 
