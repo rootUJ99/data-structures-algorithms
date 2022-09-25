@@ -10,25 +10,31 @@ class HashMap:
     def set_key(self, key):
         hash = self.hash_func(key)
         i = 0
-        if hash < len(self.input):
-            while self.input[hash] != None:
-                hash = self.hash_func(hash + i * i)
-            self.input[hash] = key
+        indx = 0
+        while i < self.size and self.input[indx] != None:
+            indx = self.hash_func(hash + i * i)
+            i+=1
+        self.input[indx] = key
 
     def get_key(self, key):
         hash = self.hash_func(key)
-        while self.input[hash] != key and hash < self.size and self.input[hash] != None:
-            hash  = self.hash_func(hash + 1)
-            if self.input[hash] == key:
-                return self.input[hash], hash
+        i = 0 
+        indx = 0
+        while i < self.size:
+            indx = self.hash_func(hash + i * i)
+            if self.input[indx] == key:
+                return self.input[indx], indx
+            i+=1
 
     def del_key(self, key):
         hash = self.hash_func(key)
-        while self.input[hash] != key and hash < self.size and self.input[hash] != None:
-            hash  = self.hash_func(hash + 1)
-            if self.input[hash] == key:
-                self.input[hash] = None
-
+        i = 0
+        indx = 0
+        while self.input[indx] != key and i < self.size:
+            indx  = self.hash_func(hash + i * i)
+            if self.input[indx] == key:
+                self.input[indx] = None
+            i+=1
         
 
 
@@ -37,7 +43,7 @@ class HashMap:
 h = HashMap(100)
 h.set_key(22)
 h.set_key(222)
-print(h.get_key(222))
+print(h.get_key(22))
 h.del_key(222)
 print(h.get_key(222))
 
