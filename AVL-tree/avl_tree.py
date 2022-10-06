@@ -11,7 +11,8 @@ class Node:
 
 class AVLTree:
     def __init__(self, root=None):
-        self.root= root 
+        # node= root 
+        pass
 
     def get_height(self,node):
         if node == None:
@@ -31,36 +32,37 @@ class AVLTree:
         node.height = max(self.get_height(node.left),self.get_height(node.right)) 
 
     def insert(self, data=None, node=None):
-        if node:
-            node = self.root
-        if self.root == None:
-            self.root = Node()
-            return self.root
-        elif data < self.root.data:
-            self.root.left = self.insert(data,self.root.left)
-        elif data > self.root.data:
-            self.root.right = self.insert(data,self.root.right)
+        # if node:
+        #     node = node
+        
+        if node == None:
+            node = Node(data)
+            return node
+        elif data < node.data:
+            node.left = self.insert(data,node.left)
+        elif data > node.data:
+            node.right = self.insert(data,node.right)
         else:
-            return self.root
+            return node
 
-        self.root.height = max(self.get_height(self.root.left),self.get_height(self.root.rightS)) 
+        node.height = max(self.get_height(node.left),self.get_height(node.right)) 
 
-        b = self.calc_balance_factor(self.root)
+        b = self.calc_balance_factor(node)
 
         if b < 1:
-            if self.calc_balance_factor(self.root.left == 1):
-                self.root = self.LL_rotation(self.root)
+            if self.calc_balance_factor(node.left == 1):
+                node = self.LL_rotation(node)
             else:
-                self.root.right = self.RR_rotation(self.root.right)
-                self.root = self.LL_rotation(self.root)
+                node.right = self.RR_rotation(node.right)
+                node = self.LL_rotation(node)
 
 
         elif b < -1:
-            if self.calc_balance_factor(self.root.left == 1):
-                self.root = self.RR_rotation(self.root)
+            if self.calc_balance_factor(node.left == 1):
+                node = self.RR_rotation(node)
             else:
-                self.root.left = self.LL_rotation(self.root.left)
-                self.root = self.RR_rotation(self.root)
+                node.left = self.LL_rotation(node.left)
+                node = self.RR_rotation(node)
 
 
     def LL_rotation(self, node):
@@ -84,7 +86,7 @@ class AVLTree:
 if __name__ == '__main__':
 
     tree = AVLTree()
-    tree.insert(1)
-    tree.insert(2)
-    tree.insert(3)
+    n1 = tree.insert(1)
+    n2 = tree.insert(2, n1)
+    n3 = tree.insert(3, n2)
     tree.pre_order()
