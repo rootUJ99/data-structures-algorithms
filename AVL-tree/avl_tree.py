@@ -26,7 +26,7 @@ class AVLTree:
         
     def pre_order(self, node):
         if node != None:
-            print(node.data)
+            print(node.data + " ")
             self.pre_order(node.left)
             self.pre_order(node.right)
         node.height = max(self.get_height(node.left),self.get_height(node.right)) 
@@ -49,20 +49,22 @@ class AVLTree:
 
         b = self.calc_balance_factor(node)
 
-        if b < 1:
+        if b > 1:
             if self.calc_balance_factor(node.left == 1):
                 node = self.LL_rotation(node)
             else:
-                node.right = self.RR_rotation(node.right)
+                node.right = self.RR_rotation(node.left)
                 node = self.LL_rotation(node)
 
 
         elif b < -1:
-            if self.calc_balance_factor(node.left == 1):
+            if self.calc_balance_factor(node.right == -1):
                 node = self.RR_rotation(node)
             else:
-                node.left = self.LL_rotation(node.left)
+                node.left = self.LL_rotation(node.right)
                 node = self.RR_rotation(node)
+        
+        return node
 
 
     def LL_rotation(self, node):
@@ -86,7 +88,7 @@ class AVLTree:
 if __name__ == '__main__':
 
     tree = AVLTree()
-    n1 = tree.insert(1)
-    n2 = tree.insert(2, n1)
-    n3 = tree.insert(3, n2)
+    n1 = tree.insert(1, tree)
+    n2 = tree.insert(2, tree)
+    n3 = tree.insert(3, tree)
     tree.pre_order()
