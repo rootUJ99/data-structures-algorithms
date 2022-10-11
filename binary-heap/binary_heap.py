@@ -11,10 +11,10 @@ class MaxHeap:
         r = 2*i + 2
         large = i
 
-        if l < n and arr[l] > arr[large]:
+        if l < n and arr[l] > arr[i]:
             large = l
 
-        if r < n and arr[r] > arr[large]:
+        if r < n and arr[r] > arr[i]:
             large = r
 
         if i!=large:
@@ -25,8 +25,8 @@ class MaxHeap:
         size = len(self.tree_arr)
         if bool(size):
             self.tree_arr.append(ele)
-            for i in range(size//2-1, -1, -1):
-                self.heapify(self.tree_arr, size, i) 
+            for i in range(len(self.tree_arr)//2, -1, -1):
+                self.heapify(self.tree_arr, len(self.tree_arr), i) 
         else:
             self.tree_arr.append(ele)
 
@@ -44,7 +44,7 @@ class MaxHeap:
 
         self.tree_arr.remove(ele)
         
-        for i in range(size//2-1, -1, -1):
+        for i in range(len(self.tree_arr)//2, -1, -1):
             self.heapify(self.tree_arr, len(self.tree_arr), i) 
 
 
@@ -55,6 +55,7 @@ h.insert(3)
 h.insert(4)
 h.insert(5)
 h.insert(6)
+h.delete(6)
 print(h.tree_arr)
 
 
