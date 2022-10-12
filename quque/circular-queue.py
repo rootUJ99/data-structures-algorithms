@@ -2,47 +2,47 @@ class CircularQueue:
     def __init__(self, N):
         self.N = N
         self.queue = [None] * N
-        self.head = -1
-        self.tail = -1
+        self.front = -1
+        self.rear = -1
 
     def enqueue(self, data):
-        if (self.tail + 1) % self.N == self.head:
+        if (self.rear + 1) % self.N == self.front:
             print('queue is full')
-        elif self.tail == -1:
-            self.head = self.tail = 0
-            self.queue[self.tail] = data
+        elif self.rear == -1:
+            self.front = self.rear = 0
+            self.queue[self.rear] = data
         else:
-            self.tail = (self.tail + 1) % self.N
-            self.queue[self.tail] = data
+            self.rear = (self.rear + 1) % self.N
+            self.queue[self.rear] = data
 
     def dequeue(self):
-        if self.head == -1:
+        if self.front == -1:
             print('queue is empty')
-        elif self.head == self.tail:
-            temp = self.queue[self.head]
-            # self.queue[self.head] = None
-            self.head = self.tail = -1 
+        elif self.front == self.rear:
+            temp = self.queue[self.front]
+            # self.queue[self.front] = None
+            self.front = self.rear = -1 
             return temp
         else:
-            temp = self.queue[self.head]
-            self.head = (self.head + 1) % self.N
-            # self.queue[self.head] = None
+            temp = self.queue[self.front]
+            self.front = (self.front + 1) % self.N
+            # self.queue[self.front] = None
             return temp
     
     def print(self):
         print(self.queue)    
 
     def cqprint(self):
-        if self.head == -1:
+        if self.front == -1:
             print("no element in queue")
-        elif self.tail >= self.head:
-            for i in range(self.head, self.tail+1):
+        elif self.rear >= self.front:
+            for i in range(self.front, self.rear+1):
                 print(self.queue[i])
             print()
         else:
-            for i in range(self.head, self.K):
+            for i in range(self.front, self.K):
                 print(self.queue[i], end="")
-            for i in range(0, self.tail +1):
+            for i in range(0, self.rear +1):
                 print(self.queue[i], end="")
             print()
 cq = CircularQueue(4)
@@ -53,6 +53,6 @@ cq.enqueue(3)
 cq.dequeue()
 cq.dequeue()
 cq.cqprint()
-print(cq.head, cq.tail)
+print(cq.front, cq.rear)
 
 
