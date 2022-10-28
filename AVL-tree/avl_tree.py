@@ -1,6 +1,3 @@
-from itertools import tee
-
-
 class Node:
     def __init__(self, data=0, height=0, left=None, right=None):
         self.data = data
