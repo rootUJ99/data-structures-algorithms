@@ -44,7 +44,7 @@ class Treap():
         if key == root.data: 
             return True
 
-        if root.root < key:
+        if root.data > key:
             return self.search_node(root.left, key)
         return self.search_node(root.right, key)
 
@@ -66,14 +66,45 @@ class Treap():
 
         return root
 
-    def delete_node(self):
-        pass
-    
-    def print_treap(self, node):
+    def delete_node(self, root, key):
+        if root == None:
+            return
+        
+        if root.data > key:
+            self.delete_node(root.left, key)
+
+        elif root.data < key:
+            self.delete_node(root.right, key)
+
+        else:
+            if root.left == None and root.right == None:
+                root = None
+
+            elif root.left and root.right:
+                
+                if root.left.priority < root.right.priority:
+
+                    self.LL_rotation(root)
+                    self.delete_node(root.left, key)
+                
+                else:
+
+                    self.RR_rotation(root)
+                    self.delete_node(root.right, key)
+            
+            else:
+                
+                child = root.left if root.left else root.right
+                curr = root
+
+                root = child
+                del curr
+
+    def print_treap(self, node, alignment='root'):
         if node != None:
-            print(node.data , " ")
-            self.print_treap(node.left)
-            self.print_treap(node.right)
+            print(node.data, node.priority, alignment+ " ")
+            self.print_treap(node.left, 'left')
+            self.print_treap(node.right, 'right')
 
 if __name__ == "__main__":
     t = Treap()
@@ -83,4 +114,6 @@ if __name__ == "__main__":
     root = t.insert_node(root, 3)
     root = t.insert_node(root, 5)
     root = t.insert_node(root, 7)
+    t.print_treap(root)
+    root = t.delete_node(root, 5)
     t.print_treap(root)
