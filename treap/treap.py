@@ -98,7 +98,7 @@ class Treap():
                 curr = root
 
                 root = child
-                del curr
+                # del curr
 
     def print_treap(self, node, alignment='root'):
         if node != None:
