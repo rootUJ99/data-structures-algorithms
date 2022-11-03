@@ -28,9 +28,23 @@ class SplayTree:
             self.pre_order(node.left)
             self.pre_order(node.right)
     
-    def insert(self, x):
-        pass
+    def insert(self, node, x):
+        if not node:
+            return Node(x)
+        elif x < node.data:
+            node.left = self.insert(node.left, x) 
+        else:
+            node.right = self.insert(node.right, x)
+        return node
+
 
 
 if __name__ == '__main__':
     s = SplayTree()
+    root = None
+    root = s.insert(root, 1)
+    root = s.insert(root, 2)
+    root = s.insert(root, 3)
+    root = s.insert(root, 4)
+    root = s.insert(root, 6)
+    s.pre_order(root)
