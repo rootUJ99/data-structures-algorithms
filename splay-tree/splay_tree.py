@@ -22,6 +22,9 @@ class SplayTree:
     def splay(self, x):
         pass
 
+    def bst_search(self,root, key):
+        return self.splay(root, key)
+
     def pre_order(self, node):
         if node:
             print(node.data, " ")
