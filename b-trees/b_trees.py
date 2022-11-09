@@ -7,3 +7,5 @@ class Node:
 
 class BTree:
     pass
+
+b = BTree()
