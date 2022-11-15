@@ -13,8 +13,22 @@ class BNode:
     
         return -1
     
-    def search(self, key):
-        pass
+    def search(self, x, key):
+        indx = 0
+        if x == None: 
+            return x
+        
+        for i in range(x.n):
+            indx = i
+            if key < x.key[i]:
+                break
+            if key == x.key[i]:
+                return x
+        
+        if x.leaf:
+            return None
+        else:
+            return self.search(x.child[i], key)
 
 
 b = BNode()
