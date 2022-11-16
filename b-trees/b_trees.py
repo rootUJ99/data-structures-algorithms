@@ -30,5 +30,7 @@ class BNode:
         else:
             return self.search(x.child[i], key)
 
+    def split(self, x, pos, y):
+        pass
 
 b = BNode()
