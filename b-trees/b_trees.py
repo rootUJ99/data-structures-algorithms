@@ -33,4 +33,7 @@ class BNode:
     def split(self, x, pos, y):
         pass
 
+    def insert(self, key):
+        pass
+
 b = BNode()
