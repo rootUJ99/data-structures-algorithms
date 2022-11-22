@@ -7,7 +7,7 @@ class BNode:
 
 class BTree:
     def __init__(self, T) -> None:
-        self.root = BNode()
+        self.root = BNode(True)
         self.T = T
 
     def insert(self, key):
@@ -44,7 +44,7 @@ class BTree:
         y = x.child[i]
         z = BNode(y.leaf)
         x.child.insert(i + 1, z)
-        x.keys.inssert(i, y.keys[t-1])
+        x.keys.insert(i, y.keys[t-1])
         z.keys = y.keys[t: (2*t) -1]
         y.keys = y.keys[0: t-1]
         if not y.leaf:
@@ -52,7 +52,7 @@ class BTree:
             y.child = y.child[0: t-1]
 
     def print_tree(self, x, l=0):
-        print("level ", l, " ", len(x.keys), end=":")
+        print("level ", l, " ", len(x.keys), end=" : ")
         for i in x.keys:
             print(i, end="")
         print()
@@ -77,9 +77,9 @@ class BTree:
             self.search_key(key, self.root)
 
 if __name__ == "__main__":
-    b = BTree(3)
+    b = BTree(5)
 
-    for i in range(10):
+    for i in range(20):
         b.insert((i, i*2))
     
     b.print_tree(b.root)
