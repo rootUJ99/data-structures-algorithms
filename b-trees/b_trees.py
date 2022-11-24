@@ -76,6 +76,24 @@ class BTree:
         else:
             self.search_key(key, self.root)
 
+    def delete(self, x, key):
+        pass
+
+    def delete_internal_nodes(seld, x, key, i):
+        pass
+
+    def delete_merge(self, x, i, j):
+        pass
+
+    def delete_predecessor(self, x):
+        pass
+
+    def delete_sucessor(self, x):
+        pass
+
+    def delete_sibling(self, x, i, j):
+        pass
+
 if __name__ == "__main__":
     b = BTree(5)
 
