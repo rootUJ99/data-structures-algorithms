@@ -59,7 +59,7 @@ class AVLTree:
         return node
 
 
-    def LL_rotation(self, node):
+    def RR_rotation(self, node):
         child = node.left
         node.left = child.right
         child.right = node
@@ -68,7 +68,7 @@ class AVLTree:
         return child
 
 
-    def RR_rotation(self, node):
+    def LL_rotation(self, node):
         child = node.right
         node.right = child.left
         child.left = node
