@@ -6,13 +6,13 @@ def selection_sort(arr):
             if arr[j] < arr[min_index]:
                 min_index = j
             
-                temp = arr[i]
-                arr[i] = arr[min_index]
-                arr[min_index] = temp
+        temp = arr[i]
+        arr[i] = arr[min_index]
+        arr[min_index] = temp
 
 
 if __name__ == "__main__":
     print("this is sleecttion sort")
-    arr = [534, 6454, 11, 422355, 6562]
+    arr = [64, 25, 12, 22, 11]
     selection_sort(arr)
     print(arr)
