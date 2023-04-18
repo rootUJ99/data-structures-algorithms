@@ -65,8 +65,6 @@ func main() {
 
 	trie.Insert("abcd")
 
-	fmt.Println(trie.root)
-
 	result := trie.Search("abcd")
 	fmt.Println(result)
 
