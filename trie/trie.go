@@ -62,9 +62,7 @@ func (t Trie) Search(word string) int {
 func main() {
 	fmt.Println("yo")
 	trie := ConstructTrie()
-
 	trie.Insert("abcd")
-
 	result := trie.Search("abcd")
 	fmt.Println(result)
 
