@@ -1,3 +1,4 @@
+from collections import deque
 class Node:
     
     def __init__(self, data, left=None, right=None):
@@ -62,6 +63,20 @@ class BinarySearchTree:
 
     def postorder_trav(self):
         self.__postorder_trav(self.root)
+    
+
+    def breath_first_search(self):
+        node = self.root
+        queue = deque([node])
+        while (len(queue) > 0):
+            curr = queue.popleft()
+            print(curr.data)
+            if curr.left:
+                queue.append(curr.left)
+                node = node.left
+            if curr.right:
+                queue.append(curr.right)
+                node = node.right
 
 
     def __search_node(self, root, data):
@@ -94,6 +109,8 @@ bt.postorder_trav()
 print('----')
 node_found = bt.search_node(3)
 print(node_found)
+
+bt.breath_first_search()
 
 
 # root = bt.add_node(root, 1)
