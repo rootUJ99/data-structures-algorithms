@@ -20,19 +20,9 @@ class BFS:
         print(map, 'map')
         return map
 
-    def bfs(self, vertex):
-        queque, visited = deque([vertex]), set([vertex])
-        while queque:
-            vertex = queque.popleft()
-            print(vertex)
-            for node in self.graph_dict[vertex]:
-                if node not in visited:
-                    queque.append(node)
-                    visited.add(node)
-
 
         
-
+''' using adjacency list'''
 graph_dict = {
     0: [1,3],
     1: [0,2],
@@ -40,6 +30,7 @@ graph_dict = {
     3: [2,0]
 }
 
+''' using adjacency matrix'''
 graph_adj = [
     [0,1,0,1],
     [1,0,1,0],
@@ -47,6 +38,6 @@ graph_adj = [
     [1,0,1,0],
 ]
 
-g = BFS(graph_adj)
-g.bfs(0)
+BFS(graph_adj)
+# g.convert_to_dict()
 
