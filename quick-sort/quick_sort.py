@@ -5,10 +5,10 @@ def partition(arr, low, high):
 
     while left <= right:
 
-        while arr[left] < pivot:
+        if arr[left] < pivot:
             left = left + 1
 
-        while arr[right] > pivot:
+        if arr[right] > pivot:
             right = right - 1
 
         if left < right:
