@@ -1,7 +1,7 @@
 class HashMap:
     def __init__(self):
         self.SIZE = 100
-        self.arr = [[] for i in range(self.SIZE)]
+        self.arr = [None for i in range(self.SIZE)]
 
     def hash_function(self, key):
         index = 0
