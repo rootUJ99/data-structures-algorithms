@@ -24,18 +24,18 @@ class Graph:
         distances[source] = 0
         parent = {}
 
-        # for _ in range(len(self.graph) - 1):
-        for u in self.graph:
-            for v, weight in self.graph[u]:
-                if distances[u] + weight < distances[v]:
-                    distances[v] = distances[u] + weight
-                    parent[v] = u
+        for _ in range(len(self.graph) - 1):
+            for u in self.graph:
+                for v, weight in self.graph[u]:
+                    if distances[u] + weight < distances[v]:
+                        distances[v] = distances[u] + weight
+                        parent[v] = u
 
-        for u in self.graph:
-            for v, weight in self.graph[u]:
-                print(distances[u] + weight < distances[v])
-                if distances[u] + weight < distances[v]:
-                    raise ValueError("negative weight cycel detected")
+            for u in self.graph:
+                for v, weight in self.graph[u]:
+                    print(distances[u] + weight < distances[v])
+                    if distances[u] + weight < distances[v]:
+                        raise ValueError("negative weight cycel detected")
 
         return distances, parent
 
